@@ -2,13 +2,13 @@ package main
 
 import "fmt"
 
-type node struct {
+type nodeS struct {
 	data int
-	next *node
+	next *nodeS
 }
 
 type linkedList struct {
-	head *node
+	head *nodeS
 }
 
 func newLinkedList() linkedList {
@@ -16,16 +16,16 @@ func newLinkedList() linkedList {
 	return l
 }
 
-func (n *node) hasNext() bool {
+func (n *nodeS) hasNext() bool {
 	return n.next != nil
 }
 
 func (n *linkedList) addData(d int) {
 
-	// if liked list is empty then start with first node
+	// if liked list is empty then start with first nodeS
 	if n.head == nil {
-		fmt.Printf("Starting linked list with node value %v\n", d)
-		n.head = &node{
+		fmt.Printf("Starting linked list with nodeS value %v\n", d)
+		n.head = &nodeS{
 			data: d,
 		}
 		return
@@ -34,12 +34,12 @@ func (n *linkedList) addData(d int) {
 	p := n.head
 
 	for p.next != nil {
-		fmt.Printf("Moving to next node from %v\n", p.data)
+		fmt.Printf("Moving to next nodeS from %v\n", p.data)
 		p = p.next
 	}
 
-	fmt.Printf("Creating Node %v\n", d)
-	p.next = &node{
+	fmt.Printf("Creating nodeS %v\n", d)
+	p.next = &nodeS{
 		data: d,
 	}
 }
@@ -49,9 +49,9 @@ func (n *linkedList) removeData(d int) {
 		return
 	}
 
-	//head verification as there is no previous node
-	// 1. if head node is the one to delete but hast next node then move the head
-	// 2. if head node is the one to delete but doesn't have next node then head pointer with nil
+	//head verification as there is no previous nodeS
+	// 1. if head nodeS is the one to delete but hast next nodeS then move the head
+	// 2. if head nodeS is the one to delete but doesn't have next nodeS then head pointer with nil
 	if n.head.data == d {
 		if n.head.next != nil {
 			n.head = n.head.next
@@ -62,7 +62,7 @@ func (n *linkedList) removeData(d int) {
 	}
 
 	// verification through linked list
-	// having a pointer on previous node and another pointer that points to the next node that will be checked as fast moving pointer
+	// having a pointer on previous nodeS and another pointer that points to the next nodeS that will be checked as fast moving pointer
 	previous := n.head
 	fast := n.head.next.next
 
@@ -91,6 +91,7 @@ func (l *linkedList) printList() {
 		p = p.next
 	}
 	fmt.Printf("%v\n", p.data)
+	fmt.Printf("size %v\n", l.size())
 }
 
 func (l *linkedList) removeDuplicate() {
@@ -123,6 +124,48 @@ func (l *linkedList) removeDuplicate() {
 
 }
 
+func (l *linkedList) size() int {
+	counter := 0
+	h := l.head
+
+	if h == nil {
+		return 0
+	}
+
+	for h.next != nil {
+		counter = counter + 1
+		h = h.next
+	}
+
+	counter = counter + 1
+	return counter
+}
+
+func (l *linkedList) kthToLast(d int) int {
+	size := l.size()
+
+	if d > size {
+		fmt.Printf("The element %v is grather than size")
+		return 0
+	}
+
+	k := (size - d) + 1
+	h := l.head
+	for i := 1; i < k; i++ {
+		h = h.next
+	}
+	return h.data
+}
+
+type nodeD struct {
+	data           int
+	previous, next *nodeD
+}
+
+type linkedListDouble struct {
+	head *nodeD
+}
+
 func main() {
 
 	list := newLinkedList()
@@ -135,4 +178,8 @@ func main() {
 	fmt.Println("Now delete duplicate values")
 	list.removeDuplicate()
 	list.printList()
+	list.addData(4)
+	list.addData(5)
+	list.printList()
+	fmt.Printf("The kth element to last of %v is %v", 2, list.kthToLast(2))
 }
