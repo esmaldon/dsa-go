@@ -1,4 +1,4 @@
-package main
+package structures
 
 import "fmt"
 
@@ -11,7 +11,7 @@ type linkedList struct {
 	head *nodeS
 }
 
-func newLinkedList() linkedList {
+func NewLinkedList() linkedList {
 	l := linkedList{}
 	return l
 }
@@ -20,7 +20,7 @@ func (n *nodeS) hasNext() bool {
 	return n.next != nil
 }
 
-func (n *linkedList) addData(d int) {
+func (n *linkedList) AddData(d int) {
 
 	// if liked list is empty then start with first nodeS
 	if n.head == nil {
@@ -44,7 +44,7 @@ func (n *linkedList) addData(d int) {
 	}
 }
 
-func (n *linkedList) removeData(d int) {
+func (n *linkedList) RemoveData(d int) {
 	if n.head == nil {
 		return
 	}
@@ -80,7 +80,7 @@ func (n *linkedList) removeData(d int) {
 
 }
 
-func (l *linkedList) printList() {
+func (l *linkedList) PrintList() {
 	if l.head == nil {
 		fmt.Print("linked list is empty")
 	}
@@ -94,7 +94,7 @@ func (l *linkedList) printList() {
 	fmt.Printf("size %v\n", l.size())
 }
 
-func (l *linkedList) removeDuplicate() {
+func (l *linkedList) RemoveDuplicate() {
 	visited := make(map[int]bool)
 
 	previous := l.head
@@ -141,7 +141,7 @@ func (l *linkedList) size() int {
 	return counter
 }
 
-func (l *linkedList) kthToLast(d int) int {
+func (l *linkedList) KthToLast(d int) int {
 	size := l.size()
 
 	if d > size {
@@ -164,22 +164,4 @@ type nodeD struct {
 
 type linkedListDouble struct {
 	head *nodeD
-}
-
-func main() {
-
-	list := newLinkedList()
-	list.addData(1)
-	list.addData(2)
-	list.addData(3)
-	list.addData(2)
-	list.addData(3)
-	list.printList()
-	fmt.Println("Now delete duplicate values")
-	list.removeDuplicate()
-	list.printList()
-	list.addData(4)
-	list.addData(5)
-	list.printList()
-	fmt.Printf("The kth element to last of %v is %v", 2, list.kthToLast(2))
 }
