@@ -1,6 +1,8 @@
 package structures
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type nodeS struct {
 	data int

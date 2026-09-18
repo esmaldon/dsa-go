@@ -1,17 +1,17 @@
 package structures
 
-// type node[K comparable, V any] struct {
+// type hashNode[K comparable, V any] struct {
 // 	key      K
 // 	value    V
-// 	nextNode *node[K, V]
+// 	nextNode *hashNode[K, V]
 // }
 
-// type myHashTable[K comparable, V any] struct {
-// 	array []*node[K, V]
+// type MyHashTable[K comparable, V any] struct {
+// 	array []*hashNode[K, V]
 // 	size  int
 // }
 
-// func newHashTable[K comparable, V any](size int) *myHashTable[K, V] {
+// func NewHashTable[K comparable, V any](size int) *MyHashTable[K, V] {
 // 	return &myHashTable[K, V]{
 // 		array: make([]*node[K, V], size),
 // 		size:  size,
