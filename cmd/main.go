@@ -1,11 +1,5 @@
 package main
 
-import (
-	"dsa/problems"
-	"dsa/structures"
-	"fmt"
-)
-
 func main() {
 
 	/////////////////////////////////////////////////// LinkedList
@@ -26,20 +20,20 @@ func main() {
 	///////////////////////////////////////////////////
 
 	/////////////////////////////////////////////////// LinkedListProblem
-	list1 := structures.NewLinkedList()
-	list1.AddData(7)
-	list1.AddData(1)
-	list1.AddData(6)
+	// list1 := structures.NewLinkedList()
+	// list1.AddData(7)
+	// list1.AddData(1)
+	// list1.AddData(6)
 
-	list2 := structures.NewLinkedList()
-	list2.AddData(5)
-	list2.AddData(9)
-	list2.AddData(2)
+	// list2 := structures.NewLinkedList()
+	// list2.AddData(5)
+	// list2.AddData(9)
+	// list2.AddData(2)
 
-	resutl := problems.SumReversedLists(&list1, &list2)
-	fmt.Printf("Result Reverted %d\n", resutl)
-	resutl = problems.SumLists(&list1, &list2)
-	fmt.Printf("Result %d\n", resutl)
+	// resutl := problems.SumReversedLists(&list1, &list2)
+	// fmt.Printf("Result Reverted %d\n", resutl)
+	// resutl = problems.SumLists(&list1, &list2)
+	// fmt.Printf("Result %d\n", resutl)
 	///////////////////////////////////////////////////
 
 	/////////////////////////////////////////////////// Hash Table

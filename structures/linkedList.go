@@ -30,7 +30,7 @@ func (n *LinkedList) AddData(d int) {
 
 	// if liked list is empty then start with first nodeS
 	if n.head == nil {
-		fmt.Printf("Starting linked list with nodeS value %v\n", d)
+		// fmt.Printf("Starting linked list with nodeS value %v\n", d)
 		n.head = &NodeS{
 			Data: d,
 		}
@@ -40,11 +40,11 @@ func (n *LinkedList) AddData(d int) {
 	p := n.head
 
 	for p.Next != nil {
-		fmt.Printf("Moving to next nodeS from %v\n", p.Data)
+		// fmt.Printf("Moving to next nodeS from %v\n", p.Data)
 		p = p.Next
 	}
 
-	fmt.Printf("Creating nodeS %v\n", d)
+	// fmt.Printf("Creating nodeS %v\n", d)
 	p.Next = &NodeS{
 		Data: d,
 	}
@@ -163,11 +163,11 @@ func (l *LinkedList) KthToLast(d int) int {
 	return h.Data
 }
 
-type nodeD struct {
+type NodeD struct {
 	Data           int
-	previous, Next *nodeD
+	Previous, Next *NodeD
 }
 
-type linkedListDouble struct {
-	head *nodeD
+type LinkedListDouble struct {
+	Head *NodeD
 }
