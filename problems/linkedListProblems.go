@@ -37,6 +37,8 @@ func SumReversedLists(list1, list2 *structures.LinkedList) int {
 	return firstNum + secondNum
 }
 
+// Sum of Lists: You have a number represented by linked list, each node contains one digit.
+// the order of digits is stored in the correct order
 func SumLists(list1, list2 *structures.LinkedList) int {
 	head := list1.GetHead()
 	var firstNumber, secondNumber string
@@ -64,4 +66,23 @@ func SumLists(list1, list2 *structures.LinkedList) int {
 		fmt.Println("Could not parse second number string to int")
 	}
 	return firstNum + secondNum
+}
+
+// Given a circular linked list, implement an algorithm that returns the node at the beginning of the loop
+func LoopDetection(list *structures.LinkedList) int {
+	var duplicated int
+	head := list.GetHead()
+	slow := head
+	fast := head.Next
+	for duplicated == 0 {
+		fmt.Printf("slow data %d\n", slow.Data)
+		fmt.Printf("fast data %d\n", fast.Data)
+		if slow.Data == fast.Data {
+			duplicated = slow.Data
+			continue
+		}
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+	return duplicated
 }

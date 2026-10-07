@@ -19,7 +19,7 @@ func main() {
 	// fmt.Printf("The kth element to last of %v is %v", 2, list.KthToLast(2))
 	///////////////////////////////////////////////////
 
-	/////////////////////////////////////////////////// LinkedListProblem
+	/////////////////////////////////////////////////// LinkedListProblem SumLists
 	// list1 := structures.NewLinkedList()
 	// list1.AddData(7)
 	// list1.AddData(1)
@@ -34,6 +34,20 @@ func main() {
 	// fmt.Printf("Result Reverted %d\n", resutl)
 	// resutl = problems.SumLists(&list1, &list2)
 	// fmt.Printf("Result %d\n", resutl)
+	///////////////////////////////////////////////////
+
+	/////////////////////////////////////////////////// LinkedListProblem LoopDetection
+	// list := structures.NewLinkedList()
+	// list.AddData(1)
+	// list.AddData(2)
+	// list.AddData(3)
+	// list.AddData(4)
+	// list.AddData(5)
+	// node := list.KthNode(2)
+	// fmt.Printf("Adding node to list with value %d\n", node.Data)
+	// list.AddNode(node)
+	// result := problems.LoopDetection(&list)
+	// fmt.Printf("Circular list starting in node %d\n", result)
 	///////////////////////////////////////////////////
 
 	/////////////////////////////////////////////////// Hash Table

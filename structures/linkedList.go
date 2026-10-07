@@ -163,6 +163,22 @@ func (l *LinkedList) KthToLast(d int) int {
 	return h.Data
 }
 
+func (l *LinkedList) KthNode(d int) *NodeS {
+	head := l.GetHead()
+	for i := 0; i < d; i++ {
+		head = head.Next
+	}
+	return head
+}
+
+func (l *LinkedList) AddNode(node *NodeS) {
+	head := l.GetHead()
+	for head.Next != nil {
+		head = head.Next
+	}
+	head.Next = node
+}
+
 type NodeD struct {
 	Data           int
 	Previous, Next *NodeD
