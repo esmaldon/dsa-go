@@ -4,49 +4,53 @@ import (
 	"fmt"
 )
 
-type nodeS struct {
-	data int
-	next *nodeS
+type NodeS struct {
+	Data int
+	Next *NodeS
 }
 
-type linkedList struct {
-	head *nodeS
+type LinkedList struct {
+	head *NodeS
 }
 
-func NewLinkedList() linkedList {
-	l := linkedList{}
+func NewLinkedList() LinkedList {
+	l := LinkedList{}
 	return l
 }
 
-func (n *nodeS) hasNext() bool {
-	return n.next != nil
+func (n *NodeS) HasNext() bool {
+	return n.Next != nil
 }
 
-func (n *linkedList) AddData(d int) {
+func (l *LinkedList) GetHead() *NodeS {
+	return l.head
+}
+
+func (n *LinkedList) AddData(d int) {
 
 	// if liked list is empty then start with first nodeS
 	if n.head == nil {
 		fmt.Printf("Starting linked list with nodeS value %v\n", d)
-		n.head = &nodeS{
-			data: d,
+		n.head = &NodeS{
+			Data: d,
 		}
 		return
 	}
 
 	p := n.head
 
-	for p.next != nil {
-		fmt.Printf("Moving to next nodeS from %v\n", p.data)
-		p = p.next
+	for p.Next != nil {
+		fmt.Printf("Moving to next nodeS from %v\n", p.Data)
+		p = p.Next
 	}
 
 	fmt.Printf("Creating nodeS %v\n", d)
-	p.next = &nodeS{
-		data: d,
+	p.Next = &NodeS{
+		Data: d,
 	}
 }
 
-func (n *linkedList) RemoveData(d int) {
+func (n *LinkedList) RemoveData(d int) {
 	if n.head == nil {
 		return
 	}
@@ -54,9 +58,9 @@ func (n *linkedList) RemoveData(d int) {
 	//head verification as there is no previous nodeS
 	// 1. if head nodeS is the one to delete but hast next nodeS then move the head
 	// 2. if head nodeS is the one to delete but doesn't have next nodeS then head pointer with nil
-	if n.head.data == d {
-		if n.head.next != nil {
-			n.head = n.head.next
+	if n.head.Data == d {
+		if n.head.Next != nil {
+			n.head = n.head.Next
 			return
 		}
 		n.head = nil
@@ -66,67 +70,67 @@ func (n *linkedList) RemoveData(d int) {
 	// verification through linked list
 	// having a pointer on previous nodeS and another pointer that points to the next nodeS that will be checked as fast moving pointer
 	previous := n.head
-	fast := n.head.next.next
+	fast := n.head.Next.Next
 
-	for previous.next != nil {
-		if previous.next.data == d {
+	for previous.Next != nil {
+		if previous.Next.Data == d {
 			if fast != nil {
-				previous.next = fast
+				previous.Next = fast
 				return
 			}
-			previous.next = nil
+			previous.Next = nil
 		}
-		previous = previous.next
-		fast = fast.next
+		previous = previous.Next
+		fast = fast.Next
 	}
 
 }
 
-func (l *linkedList) PrintList() {
+func (l *LinkedList) PrintList() {
 	if l.head == nil {
 		fmt.Print("linked list is empty")
 	}
 	p := l.head
 
-	for p.next != nil {
-		fmt.Printf("%v", p.data)
-		p = p.next
+	for p.Next != nil {
+		fmt.Printf("%v", p.Data)
+		p = p.Next
 	}
-	fmt.Printf("%v\n", p.data)
-	fmt.Printf("size %v\n", l.size())
+	fmt.Printf("%v\n", p.Data)
+	fmt.Printf("size %v\n", l.Size())
 }
 
-func (l *linkedList) RemoveDuplicate() {
+func (l *LinkedList) RemoveDuplicate() {
 	visited := make(map[int]bool)
 
 	previous := l.head
-	fast := l.head.next
+	fast := l.head.Next
 
-	visited[previous.data] = true
+	visited[previous.Data] = true
 
-	for fast.next != nil {
-		if visited[fast.data] {
-			if fast.next != nil {
-				previous.next = fast.next
-				fast = fast.next
+	for fast.Next != nil {
+		if visited[fast.Data] {
+			if fast.Next != nil {
+				previous.Next = fast.Next
+				fast = fast.Next
 				continue
 			}
-			previous.next = nil
-			fast.next = previous.next
+			previous.Next = nil
+			fast.Next = previous.Next
 			continue
 		}
-		visited[fast.data] = true
+		visited[fast.Data] = true
 
-		previous = previous.next
-		fast = fast.next
+		previous = previous.Next
+		fast = fast.Next
 	}
-	if visited[fast.data] {
-		previous.next = nil
+	if visited[fast.Data] {
+		previous.Next = nil
 	}
 
 }
 
-func (l *linkedList) size() int {
+func (l *LinkedList) Size() int {
 	counter := 0
 	h := l.head
 
@@ -134,17 +138,17 @@ func (l *linkedList) size() int {
 		return 0
 	}
 
-	for h.next != nil {
+	for h.Next != nil {
 		counter = counter + 1
-		h = h.next
+		h = h.Next
 	}
 
 	counter = counter + 1
 	return counter
 }
 
-func (l *linkedList) KthToLast(d int) int {
-	size := l.size()
+func (l *LinkedList) KthToLast(d int) int {
+	size := l.Size()
 
 	if d > size {
 		fmt.Printf("The element %v is grather than size")
@@ -154,14 +158,14 @@ func (l *linkedList) KthToLast(d int) int {
 	k := (size - d) + 1
 	h := l.head
 	for i := 1; i < k; i++ {
-		h = h.next
+		h = h.Next
 	}
-	return h.data
+	return h.Data
 }
 
 type nodeD struct {
-	data           int
-	previous, next *nodeD
+	Data           int
+	previous, Next *nodeD
 }
 
 type linkedListDouble struct {
